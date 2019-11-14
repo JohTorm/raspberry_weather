@@ -17,7 +17,8 @@ city_name = "oulu"
 # complete_url variable to store 
 # complete url address 
 #complete_url = base_url + "appid=" + api_key + "&q=" + city_name 
-complete_url = base_url + "appid=" + api_key + "&q=Oulu&mode=json&units&metric&cnt=7"
+#												Oulun id				7 päivän ennuste
+complete_url = base_url + "appid=" + api_key + "&id=643485&units&metric&cnt=7"
 
 # get method of requests module 
 # return response object 
