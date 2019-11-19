@@ -3,7 +3,7 @@ import calendar
 
 api_key = 'd45a4689c7ff92c093ee18f3c3dafac9'
 api_call = 'https://api.openweathermap.org/data/2.5/forecast?appid=' + api_key + '&q=oulu'
-
+#'https://api.openweathermap.org/data/2.5/forecast?&q=Oulu&appid=d45a4689c7ff92c093ee18f3c3dafac9'
 running = True
 
 print('Welcome to Jaimes Subroto\'s 5 day weather forecast application using OpenWeatherMap\'s API!')
@@ -52,8 +52,7 @@ while running:
                 hour -= 12
             meridiem = 'PM'
 
-        # Prints the hours [HH:MM AM/PM]
-        print('\n%i:00 %s' % (hour, meridiem))
+        
 
         # Temperature is measured in Kelvin
         temperature = item['main']['temp']
