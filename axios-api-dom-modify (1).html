@@ -23,29 +23,40 @@
       
       var key = 'd45a4689c7ff92c093ee18f3c3dafac9';
       var cityName = 'Oulu';  
+      
       axios.get('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=' + key)
       .then(function (response) {
         // handle success
-        console.log(response);
-
-        let target = document.querySelector("#clickTarget");
-
-        response.data.list.main.forEach(element => {
-          let div = document.createElement('div');
-          let textChild = document.createTextNode(element.title);
-          div.appendChild(textChild);
-          target.appendChild(div);
-          document.getElementById('description').innerHTML = description;
-          document.getElementById('location').innerHTML = response.city.name;
+        drawWeather(response);
         });
-        
+
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       })
     }
-    
+    function drawWeather ( d ){
+      console.log(d);
+      let target = document.querySelector("#clickTarget");        
+        d.data.list.forEach(element => {
+          let div = document.createElement('div');          
+          let temperature = document.createTextNode(element.main.temp);          
+          div.appendChild(temperature);
+          target.appendChild(div);
+
+          let targetA = document.querySelector("#time");
+
+        response.data.list.forEach(element => {
+          let divA = document.createElement('divA');
+          let timeStamp = document.createTextNode(element.dt);
+
+          divA.appendChild(timeStamp);
+          targetA.appendChild(divA);
+          
+        });
+        
+    }
     </script>
   </head>
   <body onload="start()">
@@ -57,9 +68,7 @@
       </p>
       <button onclick="getWeather()">Get the data</button>
       <div id="clickTarget"></div>
-      <div id="description"></div>
-      <div id="location"></div>
-      <div id="forecast"></div>
+      <div id="time"></div>
     </div>
   </body>
 </html>
