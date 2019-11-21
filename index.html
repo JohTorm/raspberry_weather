@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"</script>
+        <script>
+        function start()
+        {
+          
+          window.setInterval(function(){
+            const d = new Date();
+            let target = document.querySelector("#timeTarget");
+            target.innerHTML = d.getSeconds();
+          }, 1000);
+         
+        }
+
+        function getWeather( cityName )
+        {
+          
+          var key = 'd45a4689c7ff92c093ee18f3c3dafac9'
+          fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + cityName+ '&appid=' + key)  
+          .then(function(resp) { return resp.json() }) // Convert data to json
+          .then(function(data) {
+            drawWeather(data);
+            })
+          .catch(function() {
+          // catch any errors
+          })
+        }
+        function drawWeather( da ) {
+      var celcius = Math.round(parseFloat(da.main.temp)-273.15);
+      var fahrenheit = Math.round(((parseFloat(da.main.temp)-273.15)*1.8)+32); 
+      
+      document.getElementById('description').innerHTML = DataView.weather[0].description;
+      document.getElementById('list.main.temp').innerHTML = celcius + '&deg;';
+      document.getElementById('city.name').innerHTML = da.name;
+      document.getElementById'dt_txt').innerHTML = da.Date;
+    }
+
+    </script>
+    </head>
+
+    <body onload="start()">
+        Time is
+        <div id="timeTarget"></div>
+        <div>
+          <p>
+              Click on the button to get data from api atttatatata https://jsonplaceholder.typicode.com/posts
+          </p>
+          <button onclick="getWeather( 'Oulu' )">Get the data</button>
+          <div id="clickTarget"></div>
+        </div>
+        <div id="weather">
+          <div id="description"></div>s
+          <h1 id="temp"></h1>
+          <div id="location"></div>
+          <div id="dt_txt"></div>
+      </div>
+      </body>
+
+</html>
+

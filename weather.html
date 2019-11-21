@@ -6,7 +6,8 @@
 </head>
 <body>
   <div id="weather">
-    <div id="description"></div>    
+    <div id="description"></div>  
+     
     <div id="location"></div>
     <div id="temp"></div>
   </div>
@@ -18,7 +19,7 @@
 
     function weatherBallon( cityID ) {
 
-        fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + cityID+ '&appid=' + key)  
+        fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + cityID + '&appid=' + key)  
         .then(function(resp) { return resp.json() }) // Convert data to json
         .then(function(data) {
             //drawWeather(data);
@@ -30,13 +31,13 @@
     }
     function drawWeather( d ) {
 
-        for(i in d.list.main.temp){
+        
 
-        var celcius = Math.round(parseFloat(d.list.main.temp[i])-273.15);
+            var celcius = Math.round(parseFloat(d.main.temp)-273.15);
             console.log(celcius);
-        }
+        
             var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
-        var description = d.weather[0].description; 
+            var description = d.weather[0].description; 
             
             document.getElementById('description').innerHTML = description;
             document.getElementById('location').innerHTML = d.name;
@@ -46,7 +47,7 @@
     
     }
     window.onload = function() {
-        weatherBallon( 643493 );
+        weatherBallon( 643493 ); // Oulun city ID
         
     }
 
